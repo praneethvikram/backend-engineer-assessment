@@ -37,8 +37,9 @@ public class AccountServiceImpl implements AccountService {
     logger.info("initiating workflow to create account for email: {}", details.getEmail());
 
     var workflow = workflowClient.newWorkflowStub(CreateAccountWorkflow.class, options);
-
-    return workflow.createAccount(details);
+    Account account = workflow.createAccount(details);
+    accountRepository.save(account);
+    return account;
   }
 
   /**
