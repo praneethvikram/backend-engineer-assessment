@@ -15,8 +15,6 @@ import org.springframework.stereotype.Service;
 public class StripePaymentProvider implements PaymentProvider {
   private final Logger logger = LoggerFactory.getLogger(StripePaymentProvider.class);
 
-  private final StripeConfiguration configuration;
-
   /** providerName is the name of the payment provider */
   @Override
   public String providerName() {

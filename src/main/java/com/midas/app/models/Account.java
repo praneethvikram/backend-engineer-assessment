@@ -1,5 +1,6 @@
 package com.midas.app.models;
 
+import com.midas.app.util.ProviderType;
 import jakarta.persistence.*;
 import java.time.OffsetDateTime;
 import java.util.UUID;
@@ -36,4 +37,36 @@ public class Account {
   @Column(name = "updated_at")
   @UpdateTimestamp
   private OffsetDateTime updatedAt;
+
+  @Column(name = "provider_type")
+  private ProviderType providerType;
+
+  @Column(name = "provider_id")
+  private String providerId;
+
+  @Override
+  public String toString() {
+    return "Account{"
+        + "id="
+        + id
+        + ", firstName='"
+        + firstName
+        + '\''
+        + ", lastName='"
+        + lastName
+        + '\''
+        + ", email='"
+        + email
+        + '\''
+        + ", createdAt="
+        + createdAt
+        + ", updatedAt="
+        + updatedAt
+        + ", providerType="
+        + providerType
+        + ", providerId='"
+        + providerId
+        + '\''
+        + '}';
+  }
 }
