@@ -1,5 +1,6 @@
 package com.midas.app.providers.payment;
 
+import com.midas.app.util.ProviderType;
 import lombok.*;
 
 @RequiredArgsConstructor
@@ -12,4 +13,6 @@ public class CreateAccount {
   private String firstName;
   private String lastName;
   private String email;
+  private ProviderType providerType;
+  private long providerId;
 }

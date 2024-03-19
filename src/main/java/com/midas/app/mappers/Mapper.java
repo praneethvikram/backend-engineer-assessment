@@ -1,7 +1,9 @@
 package com.midas.app.mappers;
 
 import com.midas.app.models.Account;
+import com.midas.app.models.Customer;
 import com.midas.generated.model.AccountDto;
+import com.midas.generated.model.CustomerDto;
 import lombok.NonNull;
 
 public class Mapper {
@@ -22,9 +24,27 @@ public class Mapper {
         .firstName(account.getFirstName())
         .lastName(account.getLastName())
         .email(account.getEmail())
+        .providerId(account.getProviderId())
+        .providerType(AccountDto.ProviderTypeEnum.valueOf(account.getProviderType().getValue()))
         .createdAt(account.getCreatedAt())
         .updatedAt(account.getUpdatedAt());
 
     return accountDto;
+  }
+
+  public static CustomerDto toCustomerDto(@NonNull Customer customer) {
+    var customerDto = new CustomerDto();
+
+    customerDto
+        .id(customer.getId())
+        .firstName(customer.getFirstName())
+        .lastName(customer.getLastName())
+        .email(customer.getEmail())
+        .providerId(customer.getProviderId())
+        .providerType(CustomerDto.ProviderTypeEnum.valueOf(customer.getProviderType().getValue()))
+        .createdAt(customer.getCreatedAt())
+        .updatedAt(customer.getUpdatedAt());
+
+    return customerDto;
   }
 }
