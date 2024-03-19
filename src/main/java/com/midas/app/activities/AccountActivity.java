@@ -24,4 +24,7 @@ public interface AccountActivity {
    */
   @ActivityMethod
   Account createPaymentAccount(Account account);
+
+  @ActivityMethod
+  String updateAccount(Account account) throws StripeException;
 }
