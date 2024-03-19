@@ -1,5 +1,4 @@
 summary: Accounts
-
 post:
   summary: Create a new user account
   operationId: createUserAccount

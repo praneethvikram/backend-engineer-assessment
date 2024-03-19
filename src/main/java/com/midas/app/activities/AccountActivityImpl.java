@@ -42,4 +42,30 @@ public class AccountActivityImpl implements AccountActivity {
   public Account createPaymentAccount(Account account) {
     return null;
   }
+
+  @Override
+  public String updateAccount(Account account) throws StripeException {
+
+    logger.info("received account: {}", account.toString());
+    String apikey = environment.getProperty("stripe.api-key");
+    RequestOptions requestOptions = RequestOptions.builder().setApiKey(apikey).build();
+
+    com.stripe.model.Account sAccount =
+        com.stripe.model.Account.retrieve(account.getProviderId(), requestOptions);
+
+    if (sAccount != null) {
+      Map<String, Object> accountParams = new HashMap<>();
+      accountParams.put("email", account.getEmail());
+      accountParams.put("type", "standard");
+      accountParams.put("country", "IN");
+      accountParams.put("capabilities[card_payments][requested]", false);
+      accountParams.put("capabilities[transfers][requested]", false);
+      Map<String, Object> updateParams = new HashMap<String, Object>();
+      updateParams.put("email", sAccount.getEmail());
+      sAccount.update(updateParams, requestOptions);
+      return sAccount.toString();
+    } else {
+      return "no such customer";
+    }
+  }
 }
